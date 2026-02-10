@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carta Especial 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: 
+    linear-gradient(rgba(255,245,245,0.85), rgba(255,245,245,0.85)),
+    url("https://images.unsplash.com/photo-1526045612212-70caf35c14df");
+  background-size: cover;
+  background-position: center;
+  font-family: 'Playfair Display', serif;
+  color: #4a2c2a;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 40px;
+  background: rgba(255,255,255,0.7);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2.2em;
+}
+
+.small {
+  font-size: 0.85em;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.btn {
+  display: inline-block;
+  margin: 15px;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  background: #f2b6c1;
+  color: #4a2c2a;
+  font-size: 1em;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.btn:hover { transform: scale(1.05); }
+
+.hidden { display: none; }
+
+.center { text-align: center; }
+
+/* Mariposas */
+.butterfly {
+  position: fixed;
+  font-size: 28px;
+  animation: fly 12s linear infinite;
+}
+@keyframes fly {
+  0% { transform: translate(-10vw, 100vh); }
+  100% { transform: translate(110vw, -20vh); }
+}
+
+/* Nieve */
+.snow {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: snow 8s linear infinite;
+}
+@keyframes snow {
+  to { transform: translateY(110vh); }
+}
+
+/* Texto final */
+.final-text {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2em;
+  color: #7a2d3a;
+  text-align: center;
+  margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="step1">
+  <h1>Hola niña de los ojos bonitos 🥺🥺</h1>
+  <p class="center">Antes de empezar… respira hondo 💕</p>
+  <p class="small">(Presiona continuar)</p>
+  <div class="center">
+    <button class="btn" onclick="next('step1','step2')">Continuar 💗</button>
+  </div>
+</div>
+
+<div class="container hidden" id="step2">
+  <h1>¿Quién es mi todo?</h1>
+  <p class="small">(Toca con cuidado)</p>
+  <div class="center">
+    <button class="btn" onclick="errorMsg()">Yo 🤡</button>
+    <button class="btn" onclick="next('step2','step3')">Tú 💖</button>
+    <button class="btn" onclick="errorMsg()">Él 🙈</button>
+  </div>
+</div>
+
+<div class="container hidden" id="step3">
+  <h1>Ah ya… más te vale 🫩</h1>
+  <p class="center">Tú, tú, tú… solo tú 🥹💗</p>
+  <p class="small">(Toca la mariposa)</p>
+</div>
+
+<div class="container hidden" id="step4">
+  <h1>¿Te gusta mucho el frío? ❄️🥶</h1>
+  <div class="center">
+    <button class="btn" onclick="next('step4','step5')">Sí 💕</button>
+    <button class="btn" onclick="errorMsg()">No 😡</button>
+  </div>
+</div>
+
+<div class="container hidden" id="step5">
+  <h1>Entonces tenemos una cita este San Valentín 💖</h1>
+  <p class="small">(Mantén presionado el corazón)</p>
+  <div class="center">
+    <button class="btn" onmousedown="final()">💗</button>
+  </div>
+</div>
+
+<div class="container hidden" id="final">
+  <div class="final-text">
+    Baños de Agua Santa nos espera…<br>
+    alista tu maleta 🧳💋<br><br>
+    ¡Nos vemos pronto! 💕
+  </div>
+</div>
+
+<script>
+function next(a,b){
+  document.getElementById(a).classList.add('hidden');
+  document.getElementById(b).classList.remove('hidden');
+}
+
+function errorMsg(){
+  const msgs = [
+    "Revisa bien tu respuesta 🥺",
+    "Creo que pulsaste mal 🙈",
+    "Haremos como que no vi eso 🤫",
+    "Eso no le gusta a Diosito 😔",
+    "¿Me quieres ver la cara? 🤡"
+  ];
+  alert(msgs[Math.floor(Math.random()*msgs.length)]);
+}
+
+function final(){
+  next('step5','final');
+  for(let i=0;i<25;i++){
+    let snow=document.createElement("div");
+    snow.className="snow";
+    snow.innerHTML="❄️";
+    snow.style.left=Math.random()*100+"vw";
+    snow.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(snow);
+  }
+}
+
+/* Mariposas */
+for(let i=0;i<5;i++){
+  let b=document.createElement("div");
+  b.className="butterfly";
+  b.innerHTML="🦋";
+  b.style.animationDelay=(i*2)+"s";
+  document.body.appendChild(b);
+}
+</script>
+
+</body>
+  </html>
